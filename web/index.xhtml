@@ -1,12 +1,82 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"></link>
+
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h:form>
+   <div class="container">
+  <div class="row">
+    <div class="col">
+      
+    </div>
+    <div class="col-6">
+     <div class="mb-3">
+  <label  class="form-label">Type</label>
+  <h:inputText class="form-control" validatorMessage="le type est obligatoire" value="#{fleurs.type}">
+      <f:validateRequired></f:validateRequired>
+  
+  </h:inputText>
+</div>
+           <div class="mb-3">
+  <label  class="form-label">Couleur</label>
+  <h:inputText class="form-control" validatorMessage="la couleur est obligatoire" value="#{fleurs.couleur}">
+  <f:validateRequired></f:validateRequired>
+  </h:inputText >
+</div>
+        
+           <div class="mb-3">
+  <label  class="form-label">Prix</label>
+  <h:inputText class="form-control" validatorMessage="la prix ne doit pas etre supérieur à 1" value="#{fleurs.prix}">
+  <f:validateRequired></f:validateRequired>
+  <f:validateDoubleRange minimum="1"></f:validateDoubleRange>
+  </h:inputText >
+</div>   
+           <div class="mb-3">
+               <h:commandButton class="btn btn-primary" action="#{fleurs.add()}" value="envoyer" ></h:commandButton>
+                <br></br>
+              
+</div>
+        
+        <h:dataTable class="table table-bordered" value="#{fleurs.bouquet}" var="b">
+            <h:column>
+                <f:facet name="header">Type</f:facet>
+                <h:outputText value="#{b.type}"></h:outputText>
+                
+            </h:column>
+            <h:column>
+                <f:facet name="header">Couleur</f:facet>
+                <h:outputText value="#{b.couleur}"></h:outputText>
+                
+            </h:column>
+            <h:column>
+                <f:facet name="header">Prix</f:facet>
+                <h:outputText value="#{b.prix}"></h:outputText>
+                
+            </h:column>
+            
+            
+            
+        </h:dataTable>
+        
+        <br></br>
+        <span >le prix totale est: #{fleurs.totale}</span>
+    </div>
+    <div class="col">
+      
+    </div>
+  </div>
+</div>  
+    
+        </h:form>
+       
+        
+        
     </h:body>
 </html>
 
